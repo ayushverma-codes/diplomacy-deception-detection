@@ -1,0 +1,36 @@
+# Local environments and caches
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+# Editors and system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# Credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Artifacts and downloaded resources
+artifacts/
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.joblib
+*.zip
+*.tar.gz
+*.7z
+# Scratch and local logs
+*.log
+tmp/
+temp/
+scratch/
