@@ -1,0 +1,31 @@
+{
+  "name": "logistic_regression",
+  "tasks": [
+    "actual_lie",
+    "suspected_lie"
+  ],
+  "seed": 42,
+  "search": {
+    "C": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "class_weight": [
+      null,
+      "balanced"
+    ]
+  },
+  "selection_metric": "validation_macro_f1",
+  "features": "logistic_regression",
+  "input": "artifacts/processed",
+  "output": "artifacts/",
+  "evaluation": [
+    "validation",
+    "test"
+  ],
+  "classifier": "logistic_regression",
+  "feature_representation": "numerical",
+  "power_enabled": false,
+  "hyperparameter_search": "validation_macro_f1, then lie_f1; training-only fit"
+}
