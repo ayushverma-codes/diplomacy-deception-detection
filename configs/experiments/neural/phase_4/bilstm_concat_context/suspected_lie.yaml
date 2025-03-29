@@ -1,0 +1,40 @@
+{
+  "task": "suspected_lie",
+  "seed": 1994,
+  "data": {
+    "min_freq": 1,
+    "max_vocab_size": 30000,
+    "lowercase": true,
+    "max_tokens": 256
+  },
+  "embeddings": {
+    "mode": "phase3_glove_reuse",
+    "glove_zip": "artifacts/embeddings/glove/glove.twitter.27B.zip",
+    "download_glove": false
+  },
+  "model": {
+    "embedding_dim": 200,
+    "hidden_size": 100,
+    "bidirectional": true,
+    "num_layers": 1,
+    "dropout": 0.5,
+    "freeze_embeddings": true
+  },
+  "training": {
+    "batch_size": 32,
+    "learning_rate": 0.003,
+    "epochs": 15,
+    "patience": 5,
+    "gradient_clip": 1.0,
+    "class_weight_mode": "paper",
+    "positive_weight": 30.0
+  },
+  "architecture": "bilstm_concat_context",
+  "context": {
+    "before": 3,
+    "after": 0,
+    "separator": " <CTX> ",
+    "include_target": true,
+    "max_messages": 16
+  }
+}
