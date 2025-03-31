@@ -1,0 +1,54 @@
+{
+  "architecture": "hierarchical_lstm_bert_power",
+  "task": "actual_lie",
+  "seed": 1994,
+  "data": {
+    "max_messages": 8,
+    "max_tokens": 20,
+    "splits": {
+      "train": "data/train.jsonl",
+      "validation": "data/validation.jsonl",
+      "test": "data/test.jsonl"
+    }
+  },
+  "initialization": {
+    "reuse_phase4_encoder": true
+  },
+  "model": {
+    "context_hidden_size": 200,
+    "context_num_layers": 1,
+    "dropout": 0.4
+  },
+  "bert": {
+    "checkpoint": "bert-base-uncased",
+    "model_type": "bert",
+    "freeze": false,
+    "representation": "pooler_output",
+    "tokenizer": "bert-base-uncased",
+    "max_pieces_original_config": 20
+  },
+  "power": {
+    "source": "game_score_delta",
+    "direction": "sender_minus_receiver",
+    "normalize": "training_only_mean_std",
+    "missing": "training_median",
+    "fusion": "concatenate_with_context_state_before_binary_classifier"
+  },
+  "training": {
+    "epochs": 15,
+    "patience": 5,
+    "batch_size": 1,
+    "gradient_accumulation": 4,
+    "mixed_precision": true,
+    "learning_rate": 0.0003,
+    "optimizer": "adamw",
+    "scheduler": "constant",
+    "class_weight_mode": "paper",
+    "positive_weight": 15.0,
+    "gradient_clip": 1.0
+  },
+  "methodology": {
+    "status": "adaptation_of_published_context_lstm",
+    "note": "No test-set tuning. 8-message chunks; Phase 4 BiLSTM encoder reused for non-BERT."
+  }
+}
